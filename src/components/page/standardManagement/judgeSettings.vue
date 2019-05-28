@@ -89,107 +89,107 @@
                     :modal-append-to-body='false'>
                 <!--弹窗内容-->
                 <el-form :model="dialogAddData" :rules="dialogAddData.rules" ref="ruleForm">
-                <el-row :gutter="10">
-                   <el-col :span="4" class="text-align-right">
-                        <span class="lineHeight30">标准名称：</span>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-form-item  prop="standardName">
-                            <el-input  v-model="dialogAddData.standardName" auto-complete="off"></el-input>
-                        </el-form-item>
-                    </el-col>
-                    <el-col  :span="4" class="text-align-right">
-                        <span class="lineHeight30">数据更新时间：</span>
-                    </el-col>
-                    <el-col :span="6">
+                    <el-row :gutter="10">
+                        <el-col :span="4" class="text-align-right">
+                            <span class="lineHeight30">标准名称：</span>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-form-item  prop="standardName">
+                                <el-input  v-model="dialogAddData.standardName" auto-complete="off"></el-input>
+                            </el-form-item>
+                        </el-col>
+                       <!-- <el-col  :span="4" class="text-align-right">
+                            <span class="lineHeight30">数据更新时间：</span>
+                        </el-col>-->
+                       <!-- <el-col :span="6">
                             <el-date-picker
                                     v-model="updateTime"
                                     type="datetime"
                                     placeholder="选择日期时间">
                             </el-date-picker>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="10" class="marginTop10">
-                    <el-col :span="4" class="text-align-right">
-                        <span class="lineHeight30">备注：</span>
-                    </el-col>
-                    <el-col :span="16">
-                        <el-input
-                                type="textarea"
-                                :rows="2"
-                                placeholder="请输入备注内容"
-                                v-model="standardRemarks">
-                        </el-input>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="10" class="marginTop10">
-                    <el-col :span="4" class="text-align-right">
-                        <span class="lineHeight30">温度范围：</span>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-select v-model="tempRangeValue" placeholder="请选择">
-                            <el-option
-                                    v-for="item in tempRange"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </el-col>
-                    <el-col  :span="4" class="text-align-right">
-                        <span class="lineHeight30">列表操作：</span>
-                    </el-col>
-                    <el-col :span="6">
-                        <el-button @click="addNode()" size="mini" type="success">添加</el-button>
-                        <el-button @click="deleteNode()" size="mini" type="success">删除</el-button>
-                    </el-col>
-                </el-row>
-                <el-row class="marginTop10">
-                    <el-table :data="list" border>
-                        <el-table-column
-                                prop="name"
-                                width="150">
-                        </el-table-column>
-                        <el-table-column
-                                width="220"
-                                v-for="(item,i) in columnDate" :key="i"
-                                align='center'>
-                            <template  slot="header" slot-scope="scope">
-                                <el-row>
-                                    <el-col :span="9">
-                                        <el-select class="marginLeft5" v-model="startMonth[i]" placeholder="">
-                                            <el-option
-                                                    v-for="item in selectMonth"
-                                                    :key="item.value"
-                                                    :label="item.label"
-                                                    :value="item.value">
-                                            </el-option>
-                                        </el-select>
-                                    </el-col>
-                                    <el-col :span="3">
-                                        <p class="lineHeight30">—</p>
-                                    </el-col>
-                                    <el-col :span="9">
-                                        <el-select v-model="endMonth[i]" placeholder="">
-                                            <el-option
-                                                    v-for="item in selectMonth"
-                                                    :key="item.value"
-                                                    :label="item.label"
-                                                    :value="item.value">
-                                            </el-option>
-                                        </el-select>
-                                    </el-col>
-                                    <el-col :span="2">
-                                        <p class="lineHeight30">月</p>
-                                    </el-col>
-                                </el-row>
-                            </template>
-                              <template slot-scope="scope">
-                                 <el-input  v-model="scope.row.columnList[i]" ></el-input>
-                              </template>
-                        </el-table-column>
-                    </el-table>
-                </el-row>
+                        </el-col>-->
+                    </el-row>
+                    <el-row :gutter="10" class="marginTop10">
+                        <el-col :span="4" class="text-align-right">
+                            <span class="lineHeight30">备注：</span>
+                        </el-col>
+                        <el-col :span="16">
+                            <el-input
+                                    type="textarea"
+                                    :rows="2"
+                                    placeholder="请输入备注内容"
+                                    v-model="standardRemarks">
+                            </el-input>
+                        </el-col>
+                    </el-row>
+                    <el-row :gutter="10" class="marginTop10">
+                        <el-col :span="4" class="text-align-right">
+                            <span class="lineHeight30">温度范围：</span>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-select v-model="tempRangeValue" @change="selectTemp()" placeholder="请选择">
+                                <el-option
+                                        v-for="item in tempRange"
+                                        :key="item.value"
+                                        :label="item.label"
+                                        :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-col>
+                        <el-col  :span="4" class="text-align-right">
+                            <span class="lineHeight30">列表操作：</span>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-button @click="addNode()" size="mini" type="success">添加</el-button>
+                            <el-button @click="deleteNode()" size="mini" type="success">删除</el-button>
+                        </el-col>
+                    </el-row>
+                    <el-row class="marginTop10">
+                        <el-table :data="list" border>
+                            <el-table-column
+                                    prop="name"
+                                    width="150">
+                            </el-table-column>
+                            <el-table-column
+                                    width="220"
+                                    v-for="(item,index) in columnDate" :key="index"
+                                    align='center'>
+                                <template  slot="header" slot-scope="scope">
+                                    <el-row>
+                                        <el-col :span="9">
+                                            <el-select class="marginLeft5" v-model="startMonth[index]" placeholder="">
+                                                <el-option
+                                                        v-for="item in selectMonth"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                        <el-col :span="3">
+                                            <p class="lineHeight30">—</p>
+                                        </el-col>
+                                        <el-col :span="9">
+                                            <el-select v-model="endMonth[index]" placeholder="">
+                                                <el-option
+                                                        v-for="item in selectMonth"
+                                                        :key="item.value"
+                                                        :label="item.label"
+                                                        :value="item.value">
+                                                </el-option>
+                                            </el-select>
+                                        </el-col>
+                                        <el-col :span="2">
+                                            <p class="lineHeight30">月</p>
+                                        </el-col>
+                                    </el-row>
+                                </template>
+                                <template slot-scope="scope">
+                                    <el-input  v-model="scope.row.columnList[index]" ></el-input>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </el-row>
                 </el-form>
                 <span slot="footer" class="dialog-footer">
                 <el-button  @click="dialogCancle">取 消</el-button>
@@ -227,22 +227,23 @@
                 count:1,
                 columnIndex:0,
                 //弹窗时间选择
-                startMonth:[''],
-                endMonth:[''],
+                startMonth:['',''],
+                endMonth:['',''],
 
                 //数据更新时间
                 updateTime:'',
                 //备注
                 standardRemarks:'',
-            //   参照标准
+                //   参照标准
                 referenceStandard:'',
-            //    厂商提醒
+                //    厂商提醒
                 manufacturerReminder:'',
-            //    温度范围
+                //    温度范围
                 tempRangeValue:'',
                 tempRange: [],
                 list:[],
-                selectMonth:[]
+                selectMonth:[],
+                clumDataList:[],
             }
         },
         mounted(){
@@ -299,44 +300,55 @@
                 _this.dialogVisible=true;
                 _this.dialogAddData.standardName=row.title;
                 _this.id=row.id;
+                _this.standardRemarks=row.remark;
                 _this.getTempList(row.temperId);
+                _this.getMonthData(_this.id);
                 _this.monthSelect();
 
             },
             //删除操作
             handleDelete(index, row) {
-                // let _this=this,
-                //     data={id:row.id};
-                // let url=_this.GLOBAL.baseURL+'/temper/delete';
-                // $.ajax({
-                //     data:data,
-                //     url: url,
-                //     type: 'get',
-                //     async: false,
-                //     success: function (data) {
-                //         if(data.state===1){
-                //             _this.$message({
-                //                 message: '删除成功！',
-                //                 type: 'success'
-                //             });
-                //             _this.getTemTableDate();
-                //         }else {
-                //             _this.$message({
-                //                 message: data.msg,
-                //                 type: 'warning'
-                //             });
-                //         }
-                //     },
-                //     error: function (err) {
-                //     },
-                //     complete: function (XMLHttpRequest, status) {
-                //     }
-                // });
+                let _this=this,
+                    data={id:row.id};
+                let url=_this.GLOBAL.baseURL+'/standard/delete/standard';
+                $.ajax({
+                    data:data,
+                    url: url,
+                    type: 'get',
+                    async: false,
+                    success: function (data) {
+                        if(data.state===1){
+                            _this.$message({
+                                message: '删除成功！',
+                                type: 'success'
+                            });
+                            _this.getTableDate();
+                        }else {
+                            _this.$message({
+                                message: data.msg,
+                                type: 'warning'
+                            });
+                        }
+                    },
+                    error: function (err) {
+                    },
+                    complete: function (XMLHttpRequest, status) {
+                    }
+                });
 
 
             },
             //**************弹窗操作******************************
             //月份选择
+            //筛选温度
+            selectTemp(){
+                let _this=this;
+                _this.startMonth=[''];
+                _this.endMonth=[''];
+                _this.columnDate=[{}];
+                _this.list=[];
+               _this.getTempList(_this.tempRangeValue);
+            },
             monthSelect(){
                 let _this=this;
                 for(let i=1;i<25;i++){
@@ -350,33 +362,74 @@
             },
             //添加标本div
             addNode:function() {
-                this.columnDate.push({});
+                let _this=this;
+                _this.startMonth.push('');
+                _this.endMonth.push('');
+                _this.columnDate.push({});
+                _this.list.push([]);
             },
             //删除样本div
             deleteNode:function(i) {
-                this.columnDate.pop();
-                this.startMonth.pop();
-                this.endMonth.pop();
+                let _this=this,popList=[];
+                _this.columnDate.pop();
+                _this.startMonth.pop();
+                _this.endMonth.pop();
+                for(let i =_this.clumDataList.length-1;i >= 0;i--){
+                    popList.push(_this.clumDataList[i].pop());
+                }
+                let url=_this.GLOBAL.baseURL+'/standard/delete/standardList';
+                for(let j=0;j<popList.length;j++){
+                    let data={
+                        id:popList[j].id
+                    };
+                    $.ajax({
+                        data:data,
+                        url: url,
+                        type: 'get',
+                        async: true,
+                        success: function (data) {
+                            if(data.state===1){
+                            }else {
+
+                            }
+                        },
+                        error: function (err) {
+                        },
+                        complete: function (XMLHttpRequest, status) {
+                        }
+                    });
+                }
+
+
             },
             //添加打开弹窗
             addBtnDialog(){
                 let _this=this;
                 _this.dialogVisible=true;
-                _this.getTempList();
+                _this.startMonth=[''];
+                _this.endMonth=[''];
+                _this.columnDate=[{}];
+                _this.list=[];
+                _this.getTempList(_this.tempRangeValue);
                 _this.monthSelect();
             },
             //获取温度列表
             getTempList(temperId){
                 let _this=this;
+                let data={
+                    id:temperId
+                }
                 let url=_this.GLOBAL.baseURL+'/temper/getTempers';
                 $.ajax({
                     url: url,
+                    data:data,
                     type: 'get',
                     async: false,
                     success: function (data) {
                         if(data.state===1){
                             if(data.res){
                                 let ranges=[],listArr=[];
+                                _this.tempRange=[];
                                 for(let i=0;i<data.res.length;i++){
                                     _this.tempRange.push(
                                         {
@@ -419,18 +472,37 @@
                     }
                 });
             },
-            //获取温度范围
-            getTempRang(temperId){
+            //获取月份温度值
+            getMonthData(temperId){
                 let _this=this;
-                let url=_this.GLOBAL.baseURL+'/temper/getTempers';
+                let data={
+                    id:temperId,
+                };
+                let url=_this.GLOBAL.baseURL+'/standard/getStandardById';
                 $.ajax({
+                    data:data,
                     url: url,
                     type: 'get',
                     async: false,
-                    id:temperId,
                     success: function (data) {
-
-
+                        let clumLength=(data.res.standardLists.length)/(_this.list.length),
+                            clumData=[];
+                        _this.startMonth=[];_this.endMonth=[];_this.columnDate=[]; _this.clumDataList=[];
+                        for(let i=0;i<clumLength;i++){
+                         _this.startMonth.push(data.res.standardLists[i].startMonth);
+                         _this.endMonth.push(data.res.standardLists[i].endMonth);
+                         _this.columnDate.push({});
+                        }
+                        for(var i=0,len=data.res.standardLists.length;i<len;i+=clumLength){
+                            clumData.push(data.res.standardLists.slice(i,i+clumLength));
+                        }
+                        _this.clumDataList=clumData;
+                        for(let j=0;j<_this.list.length;j++){
+                            _this.list[j].columnList=[];
+                            for(let k=0;k<clumData[j].length;k++){
+                                _this.list[j].columnList.push(clumData[j][k].num);
+                            }
+                        }
                     },
                     error: function (err) {
                     },
@@ -438,7 +510,6 @@
                     }
                 });
             },
-            //获取温度范围列表
             //弹窗内容数据
             dialogSure(){
                 let _this=this,standardList=[],totalData = [];
@@ -459,12 +530,12 @@
                 for(let k=0;k<totalData.length;k++){
                     for(let i=0;i<totalData[k].length;i++){
                         standardList.push({
-                            startMonth:_this.startMonth[i],
-                            endMonth:_this.endMonth[i],
-                            num:totalData[k][i]
-                        }
-                    );
-                  }
+                                startMonth:_this.startMonth[i],
+                                endMonth:_this.endMonth[i],
+                                num:totalData[k][i]
+                            }
+                        );
+                    }
                 }
                 let data= {
                     standard: {
